@@ -22,6 +22,19 @@ public class Game {
     private boolean owned;
     private boolean wish;
 
+    public GameView toView() {
+        return toView(this);
+    }
+
+    public static GameView toView(Game game){
+        return GameView.builder()
+                .uuid(game.uuid)
+                .gameId(game.gameId)
+                .owned(game.owned)
+                .wish(game.wish)
+                .build();
+    }
+
     public static final RowMapper<Game> GAME_ROW_MAPPER = (rs, row) -> {
         Game game = Game.builder()
                 .uuid(UUID.fromString(rs.getString("id")))
